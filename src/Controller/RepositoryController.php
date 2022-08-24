@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RepositoryController extends AbstractController
 
@@ -22,7 +23,7 @@ class RepositoryController extends AbstractController
     }
     
     #[Route('/connextion', name: 'app_repository')]
-    public function index(Request $request): Response
+    public function index(Request $request, UserPasswordHasherInterface $passwordHasher): Response
     {
         //creaton de nouvelle uttilisateur $user
         $user = new User;
@@ -31,9 +32,14 @@ class RepositoryController extends AbstractController
         $form= $this-> createForm(RegisterType::class,$user);
 
         $form->handleRequest($request);
+        //si le formulaire est envoyer et est valide
         if ($form->isSubmitted()&& $form ->isValid()){
 
             $user=$form->getData();
+
+            $password = $passwordHasher -> hashPassword($user,$user->getPassword());
+
+            $user->setPassword($password);
 
             //FIGE LA DATA POUR L'ENREGISTREMENT
             $this ->entityManager->persist($user);
