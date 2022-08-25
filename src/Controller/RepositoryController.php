@@ -22,7 +22,7 @@ class RepositoryController extends AbstractController
         $this ->entityManager = $entityManager;
     }
     
-    #[Route('/connextion', name: 'app_repository')]
+    #[Route('/inscription', name: 'app_repository')]
     public function index(Request $request, UserPasswordHasherInterface $passwordHasher): Response
     {
         //creaton de nouvelle uttilisateur $user
