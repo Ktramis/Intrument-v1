@@ -4,10 +4,15 @@
 
 {% block content %}
 <div class="container">
-    <h1>Bienvenu dans votre espace personel Uttilisateur {{app.user.lastname}}</h1>
-
-
-
     
+    <h1>Mon compte</h1>
+        Bienvenue   {{(app.user.lastname)}} dans votre espace personel. <br>
+            CVous pouver modifier vos information personel ici.
+            <br>
+            <a href="{{path('password')}}">- Modifier mon mot de passe</a><br>
+            <hr>
+
+
+
 </div>
 {% endblock %}
