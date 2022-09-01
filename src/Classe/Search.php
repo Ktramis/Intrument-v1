@@ -16,7 +16,7 @@ public $string ='';
 /**
  *@var Categorie[]
  */
-public $categories =[];
+public $categorie =[];
 
 }
 

@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Classe\Search;
+use App\Entity\Categorie;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,10 +22,14 @@ class SearchType extends AbstractType{
             [
                 'placeholder'=>'votre recherche ...'
             ]
-
-
-
-        ]);   
+            ])
+        ->add('categorie',EntityType::class,[
+                'label'=> false,
+                'required'=>false,
+               'class'=> Categorie::class,
+               'multiple'=>true,
+               'expanded'=> true,
+        ]) ; 
     }
 
     public function configureOptions(OptionsResolver $resolver): void
