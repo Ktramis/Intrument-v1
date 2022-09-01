@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-
+use App\Classe\Search;
 use App\Entity\Produit;
+use App\Form\SearchType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -21,14 +22,25 @@ class ProduitController extends AbstractController
     #[Route('/les-produit', name: 'app_produit')]
     public function index(): Response
     {
+
+        $search = new Search;
+
+        $form = $this->createForm(SearchType::class, $search);
+
+         //recuperation des donné relative a mon entite produit A l'aide de doctrine dans  mon repository(ProductRepository)
         $produit =$this->entityManager->getRepository(Produit::class)->findAll();
 
-        return $this->render('produit/index.html.twig',["produits"=>$produit]);
+        return $this->render('produit/index.html.twig',[
+            "produits"=>$produit,
+            'form'=>$form->createView()
+        ]);
     }
 
 
 /////////////////////////////////////////page pour un produit/////////////////////////////////////////////
 
+
+    //pour que l'argument slug soit bien pris en compt par la fonction on met dans la root /{slug}
     #[Route('/produit/{slug}',name:'produit')]
     public function show($slug): Response
     {
