@@ -25,4 +25,35 @@ class ProduitController extends AbstractController
 
         return $this->render('produit/index.html.twig',["produits"=>$produit]);
     }
+
+
+/////////////////////////////////////////page pour un produit/////////////////////////////////////////////
+
+    #[Route('/produit/{slug}',name:'produit')]
+    public function show($slug): Response
+    {
+
+        $produit=$this->entityManager->getRepository(Produit::class)->findOneBySlug($slug);
+        // on recherche un produit dans la basse de donne corespondant a son slug
+            //findOneBySlug -> trouve appartitre de slug
+
+        if(!$produit){
+            return $this->redirectToRoute('app_produit');
+            // si la il ne trouve pas la varible du produit  redirige ver la page general des produits
+        }
+
+        return $this->render('produit/show.html.twig',[
+        'produit'=>$produit
+    ]);
+    }
+
+
+
+
+
+
+
+
+
+
 }

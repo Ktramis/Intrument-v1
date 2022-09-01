@@ -7,7 +7,9 @@
         {% for produit in produits %}
             <div class="produit ">
                 <h4 >{{produit.name}}</h4>
-                <img src="/uploads/{{produit.illustration}}" alt="" class="ima_produit" >
+                <a href= "{{path('produit',{'slug':produit.slug}) }}">
+                <img  src="/uploads/{{produit.illustration}}" alt="" class="ima_produit" >
+                </a>
                 <h5>{{(produit.price / 100)| number_format(2,'.')}}£</h5>
                 <p>{{produit.subtitle}}</p>
             </div>

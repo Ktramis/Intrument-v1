@@ -11,9 +11,34 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+   
     
 }
 .ima_produit{
    width: 300px;
    height: 300px;
+}
+.contoire{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.left-produit{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+   align-items: center; 
+}
+.rigth-produit{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+   align-items: center;  
+}
+.contoire .ima{
+ width: 500px;
+ height: 500px;
 }

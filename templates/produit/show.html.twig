@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{produit.name}}{% endblock %}
+{% block content %}
+    <div class="contoire">
+    <div class="left-produit">
+        <h4>{{produit.name}}</h4>
+        <img src="/uploads/{{produit.illustration}}" class="ima" alt="">
+        <h5>A {{(produit.price / 100)| number_format(2,'.')}}€</h5>
+    </div>
+    <div class="rigth-poduit">
+        <h5>{{produit.subtitle}}</h5>
+        <hr>
+        {{produit.description}}
+        <hr>
+        <a  class="btn btn-primary">Ajouter au panier</a>
+    </div>
+    </div>
+{% endblock %}
