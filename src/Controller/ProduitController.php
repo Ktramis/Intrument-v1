@@ -24,7 +24,7 @@ class ProduitController extends AbstractController
     public function index(Request $request): Response
     {
         //recuperation des donné relative a mon entite produit A l'aide de doctrine dans  mon repository(ProductRepository)
-        $produit =$this->entityManager->getRepository(Produit::class)->findAll();
+       
 
         $search = new Search;
 
@@ -37,6 +37,8 @@ class ProduitController extends AbstractController
               // $search = $form->getData(); on a pas besoin d'ecrire cette ligne car l'obecjt est deja dans la requette
             
             $produit =$this->entityManager->getRepository(Produit::class)->findWithSearch($search);
+        }else{
+            $produit =$this->entityManager->getRepository(Produit::class)->findAll();
         }
 
        

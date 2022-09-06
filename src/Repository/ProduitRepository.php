@@ -57,8 +57,16 @@ class ProduitRepository extends ServiceEntityRepository
             //tu rajoute le parametre categorie
             ->andWhere('c.id In (:categorie)')
             ->setParameter('categorie',$search->categorie);
+            //je te donne le parametre categorie qui aura la valleur qui est dans $search
         }
 
+        if(!empty($search->string)){
+            $query = $query
+
+            ->andWhere('p.name LIKE :string')
+            ->setParameter('string',"%$search->string%");
+        }
+        //creation de la requette et retoure du resultat
         return $query->getQuery()->getResult();
     }
 
