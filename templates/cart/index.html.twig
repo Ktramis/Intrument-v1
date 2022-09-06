@@ -17,7 +17,10 @@
             </tr>
         </thead>
         <tbody>
+            
 
+            {% set total = null %}
+            {% set Quantité = null %}
             {% for produit in cart %}
             <tr>
                 <th>
@@ -48,8 +51,19 @@
                 </td>
 
             </tr>
-
+            {% set Quantité = Quantité +(produit.quantity)%}
+            {% set total = total+((produit.produit.price)*(produit.quantity))%}
             {% endfor %}
         </tbody>
+
     </table>
+
+    <div class="text-right mb-5">
+    <b>Vous avez  {{ cart|length }} produit different</b><br>
+    <b>Pour une totalite de {{Quantité}} de produits</b><br>
+    <b>Total de mon panier : {{(total / 100)|number_format(2, ',')}} €</b>
+    <br>
+    <a href="" class="btn btn-success btn-block mt-3">Valider mon panier</a>
+</div>
+
 {% endblock %}
