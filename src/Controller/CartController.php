@@ -56,6 +56,28 @@ class CartController extends AbstractController
         return $this->redirectToRoute('app_cart');
       
     }
+      //supretion de une unite de porduit
+      #[Route('/cart/sub/{id}', name: 'sub-to-cart')]
+      public function sub(Cart $cart,$id): Response
+      {
+           
+          $cart->sub($id);
+
+            //redirige ver le panier (ou on affichera le donne enrgistre )
+          return $this->redirectToRoute('app_cart');
+        
+      }
+
+      //effacer un produit
+      #[Route('/cart/delete/{id}', name: 'delete-to-cart')]
+      public function delete(Cart $cart,$id): Response
+      {
+         $cart->delete($id);
+
+        return $this->redirectToRoute('app_cart');
+      }
+
+
 
     // effacer tout le panier
     #[Route('/cart/remove', name: 'app-to-remove')]
