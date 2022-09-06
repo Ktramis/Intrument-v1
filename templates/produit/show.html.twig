@@ -3,17 +3,20 @@
 {% block title %}{{produit.name}}{% endblock %}
 {% block content %}
     <div class="contoire">
+
     <div class="left-produit">
         <h4>{{produit.name}}</h4>
         <img src="/uploads/{{produit.illustration}}" class="ima" alt="">
         <h5>A {{(produit.price / 100)| number_format(2,'.')}}€</h5>
     </div>
-    <div class="rigth-poduit">
+
+    <div class="rigth-poduit" >
         <h5>{{produit.subtitle}}</h5>
         <hr>
         {{produit.description}}
         <hr>
-        <a  class="btn btn-primary">Ajouter au panier</a>
+        <a href="{{path('add-to-cart',{'id':produit.id})}}" class="btn btn-primary">Ajouter au panier</a>
+        {# chemaint qui mene a la fonction add qui menera elle meme ou produit apres enregistrement du comptage #}
     </div>
     </div>
 {% endblock %}
