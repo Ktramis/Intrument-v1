@@ -4,4 +4,44 @@
 
 {% block content %}
 
+
+    <table class="table mt-3">
+    <thead>
+        <tr>
+            <th scope="col">Produit</th>
+            <th scope="col"></th>
+            <th scope="col">Quantité</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Total</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        {% for produit in cart %}
+        <tr>
+            <th>
+                <img src="/uploads/{{produit.produit.illustration}}" alt="" width="100px">
+            </th>
+            <td>
+                {{produit.produit.name}}
+
+            </td>
+            <td>
+            {{produit.quantity}}
+            {# on met que product.quantity car quantity est comme le deuxieu produit un clé dans un tableau   #}
+            </td>
+            <td>
+            {{(produit.produit.price / 100) | number_format(2,'.' )}}€
+            </td>
+            <td>
+               {{((produit.produit.price)*(produit.quantity) /100) | number_format(2,'.')}}€
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
