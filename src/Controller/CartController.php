@@ -27,21 +27,11 @@ class CartController extends AbstractController
     #[Route('/mon-panier', name: 'app_cart')]
     public function index(Cart $cart): Response
     {
-        
-        $cartComplet = [];
-
-        foreach ($cart->get() as $id => $quantity ){
-            $cartComplet[] = [
-                'produit' =>$this->entityManager->getRepository(Produit::class)->findOneById($id),
-                'quantity' =>$quantity
-            ];
-
-        }
-
+        //ici on a suprimer le foreach et la varible cartController pour deux reasion qui sont lier l'une a lautre ,premierment sans ce cahgement si quelqun aurai voulue aller sur son panier alors que le panier est vide c'ella aurai donne une erreur 404  ce qui ammemene a la deuxieme raison c'est un faille de securite au niveau des produit don affint de pouvoir arrenger cela on a crée un fonction getFull dans cart.php  
 
         // dd($cart->get());//on verifi le fonctionement 
         return $this->render('cart/index.html.twig',[
-            'cart'=>$cartComplet
+            'cart'=>$cart->getFull()
         ]);
     }
 

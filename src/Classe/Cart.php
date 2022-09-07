@@ -2,16 +2,20 @@
 namespace App\Classe;
 
 use App\Entity\Produit;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 class Cart{
     // RequestStack permet d'acceder a une requette en cours d'uttilisation
 
     private $requestStack;
+    private $entityManager;
     
-    public function __construct(RequestStack $requestStack)
+    
+    public function __construct(RequestStack $requestStack,EntityManagerInterface $entityManager)
     {
         $this->requestStack = $requestStack;
+        $this->entityManager=$entityManager;
     }
 
     //ajouter au panier
@@ -42,7 +46,7 @@ class Cart{
         
     }
 
-      //ajouter au panier
+      //suprimer une qunatitier d'un produit
       public function sub($id){
 
         //avec la variable id en parametre  
@@ -100,7 +104,31 @@ class Cart{
     }
 
 
+    public function getFull(){
+        $cartComplete = [];
 
+        if($this->get()) {
+          foreach ($this->get() as $id => $quantity) {
+            // Je récupère l'ID du produit en base de données
+            $produit_object = $this->entityManager->getRepository(Produit::class)->findOneById($id);
+
+            // SI le produit n'existe pas
+            if (!$produit_object) {
+              // On le supprime du panier
+              $this->delete($id);
+              continue;//conituet  est comme le break on sort de la boucle 
+            }
+
+            $cartComplete[] = [
+              'produit' => $produit_object,
+              'quantity' => $quantity
+            ];
+          } 
+        }
+
+        return $cartComplete;
+
+    }
 
 
 
