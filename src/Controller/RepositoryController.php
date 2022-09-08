@@ -33,6 +33,10 @@ class RepositoryController extends AbstractController
 
         $form->handleRequest($request);
         //si le formulaire est envoyer et est valide
+
+
+        $notification=null;
+
         if ($form->isSubmitted()&& $form ->isValid()){
 
             $user=$form->getData();
@@ -46,10 +50,16 @@ class RepositoryController extends AbstractController
 
             //execute
             $this ->entityManager->flush();
+
+            // $notification="Votre compte a ete enregistre vous pouver desormet vous connecter";
+
+            return $this->redirectToRoute('app_login');
+            
         }
 
         return $this->render('repository/index.html.twig',[
-            'form'=>$form-> createView()
+            'form'=>$form-> createView(),
+            
         ]);
         // on met la variable $form dans la cle form
     }
