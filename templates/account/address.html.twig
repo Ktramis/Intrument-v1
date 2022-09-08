@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter vos addresse{% endblock %}
+
+{% block content %}
+<div class="container">
+   
+    <h1>Mon registre d'adresse</h1>
+    <h4>Vous pouver gere vos adresse ici </h4>
+     <a href="address-add" class="btn btn-info btn-sm float-right">Ajouter une adresse</a>
+    {% if app.user.addresses|length == 0 %}
+    <h4>Vous n'aver pas encore enregistre d'adresse nous vous consseillon de le faire si vous vouler pouvoire etre livre </h4>
+    <br>
+    <a href ="address-add">Vous pouver en Ajouter ici</a>
+
+    {% else %}
+    adresse
+    {% endif %}
+    <br>
+    <hr>
+
+    <a href="{{path('account')}}">Retour a mon compte</a>
+
+
+</div>
+{% endblock %}
