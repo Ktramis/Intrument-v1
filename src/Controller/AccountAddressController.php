@@ -2,12 +2,24 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Address;
+use App\Form\AddressType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AccountAddressController extends AbstractController
 {
+    // private $entityManager;
+
+    // public function __construct(EntityManagerInterface $entityManager)
+    // {
+    //     $this->entityManager=$entityManager;
+    // }
+
+
+
     #[Route('/account/address', name: 'address')]
     public function index(): Response
     {
@@ -17,6 +29,13 @@ class AccountAddressController extends AbstractController
     #[Route('/account/address-add', name: 'address-add')]
     public function add(): Response
     {
-        return $this->render('account/address_add.html.twig');
+        $address = new Address ;   
+
+        $form = $this->createForm(AddressType::class,$address);
+
+        return $this->render('account/address_add.html.twig',[
+            'form' => $form->createView(),
+        ]);
     }
 }
+?>
