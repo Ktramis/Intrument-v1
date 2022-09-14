@@ -14,7 +14,19 @@
     <a href ="address-add">Vous pouver en Ajouter ici</a>
 
     {% else %}
-    adresse
+    <h3>Vos address</h3>
+    <div class="adresses">
+    {% for address in app.user.addresses %}
+            <div class="adresse">
+             <h5>{{address.name}}</h5>
+             <p>{{address.address}}-
+             {{address.postal}}</p>
+             <p>{{address.country}}-{{address.city}}</p>
+             </div>
+        
+         <hr>
+     {% endfor %}
+    </div>
     {% endif %}
     <br>
     <hr>
