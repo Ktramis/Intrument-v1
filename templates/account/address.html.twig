@@ -22,6 +22,7 @@
              <p>{{address.address}}-
              {{address.postal}}</p>
              <p>{{address.country}}-{{address.city}}</p>
+             <p><a href="{{path('address-eddit',{'id':address.id})}}">Modiffier </a>----<a href="{{path('address-remove',{'id':address.id})}}"> Suprimer </a></p>
              </div>
         
          <hr>
