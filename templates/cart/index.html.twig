@@ -65,7 +65,7 @@
             <b>Pour une totalite de {{Quantité}} de produits</b><br>
             <b>Total de mon panier : {{(total / 100)|number_format(2, '.')}} €</b>
             <br>
-            <a href="" class="btn btn-success btn-block mt-3">Valider mon panier</a>
+            <a href="{{path('app_order')}}" class="btn btn-success btn-block mt-3">Valider mon panier</a>
             <a href="{{path("app-to-remove")}}" class="btn btn-success btn-block mt-3">Vidée mon panier</a>
     </div>
     {% else %}

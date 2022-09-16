@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Validation de la commande{% endblock %}
+
+{% block content %}
+    <section class="container mt-4">
+        <h2>Je passe ma commadne</h2>
+        <p>Choissiser vos prefference avant de passer votre commande  sur La boutique francais</p>
+
+        <div class="row" >
+        <div class="col-md-6">
+        <b>Choisir mon adresse de livraison</b>
+        <br>
+        <b>Choisir mon transporteur</b>
+
+        </div>
+        <div class="col-md-6">
+        <b>Récap de ma commande</b>
+        <br>
+        <b>Bouton pour payer</b>
+        </div>
+        </div>
+        <a class="btn btn-success btn-block mt-3 " href="{{path('app_cart')}}">Retour au panier</a>
+    <section>
+{% endblock %}
