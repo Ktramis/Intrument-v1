@@ -10,6 +10,11 @@
         <div class="row" >
         <div class="col-md-6">
         <b>Choisir mon adresse de livraison</b>
+        {% set formHtml %}
+        {{form(form)}}
+        {% endset %}
+         {{formHtml|replace({'[br]':'<br>'})|raw}}
+         {# permet la lecteur des br affint que les saut de ligne sois pris en compte #}
         <br>
         <b>Choisir mon transporteur</b>
 
