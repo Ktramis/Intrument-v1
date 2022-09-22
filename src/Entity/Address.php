@@ -49,7 +49,7 @@ class Address
     {
         return $this->id;
     }
-    
+    // pour afficher dans une formulaire de chois plus slimplement
     public function __toString()
     {
         return $this->getName().'[br]'.$this->getAddress().'[br]'.$this->getCity().' - '.$this->getCountry();

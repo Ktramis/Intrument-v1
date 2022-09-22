@@ -44,6 +44,12 @@ class Carrier
     {
         return $this->price;
     }
+      // pour afficher dans une formulaire de chois plus slimplement
+      public function __toString()
+      {
+          return $this->getName().'[br]'.$this->getdescription().'[br]'.number_format($this->getPrice(), 2, ',', ',').' €';
+      }
+  
 
     public function setPrice(float $price): self
     {
