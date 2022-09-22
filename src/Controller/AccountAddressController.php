@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Classe\Cart;
 use App\Entity\Address;
 use App\Form\AddressType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -29,16 +30,14 @@ class AccountAddressController extends AbstractController
     }
 
     #[Route('/account/address-add', name: 'address-add')]
-    public function add(Request $request): Response
+    public function add(Request $request,Cart $cart): Response
     {
         $address = new Address ;   
 
         $form = $this->createForm(AddressType::class,$address);
         $form->handleRequest($request);
         
-        if ($form->isSubmitted() && $form->isValid()) { 
-            
-        }
+     
         if ($form->isSubmitted()&& $form ->isValid()){
 
             $address->setUser($this->getUser());
@@ -55,6 +54,12 @@ class AccountAddressController extends AbstractController
             $this ->entityManager->flush();
 
             // $notification="Votre compte a ete enregistre vous pouver desormet vous connecter";
+            if ($cart->get()){
+                return $this->redirectToRoute('order');
+            }else{
+                return $this->redirectToRoute('app_account_address');
+            }
+
 
             return $this->redirectToRoute('address');
             
@@ -112,6 +117,7 @@ class AccountAddressController extends AbstractController
 
             // $notification="Votre compte a ete enregistre vous pouver desormet vous connecter";
 
+           
             return $this->redirectToRoute('address');
             
         }
