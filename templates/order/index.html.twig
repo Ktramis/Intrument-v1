@@ -11,7 +11,9 @@
         <div class="col-md-6">
         
         {% set formHtml %}
-        {{form(form)}}
+        {{form_start(form,{action:path('summary')})}}
+        {# decompose le formulaire et l'indique que l'action de du formulaire se deroule sur le Order/summary #}
+        {{form_end(form)}}
         {% endset %}
          {{formHtml|replace({'[br]':'<br>'})|raw}}
          {# permet la lecteur des br affint que les saut de ligne sois pris en compte #}
@@ -25,10 +27,12 @@
         </div>
      <div class="order-summary">
                 {% for key,produit in cart %}
+                {# pour tout produit qui est dans le pannier #}
                     <div class="row {% if key > 0 %}mt-2{% endif %}"> 
-                    {# le if indique que si la cle de produit est supereieur a 0 c'est a dirt tout les produit sauf le premier ajout de la class mt-2(margin-top) #}
+                    {# le if indique que si la clé(key) de produit est supereieur a 0 c'est a dirt tout les produit sauf le premier ajout de la class mt-2(margin-top)  #}
                         <div class="col-2">
                             <img src="/uploads/{{produit.produit.illustration}}" alt="{{produit.produit.name}}" height="75px">
+                            {# on les appelle comme on les apple dans le panie #}
                         </div>
                         <div class="col-8 my-auto">
                             {{produit.produit.name}}<br>

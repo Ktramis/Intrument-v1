@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+
+
+{% block title %}Paiement de  ma commande - La Boutique Française{% endblock %}
+
+{% block content %}
+    <h2>Mon récapitulatif</h2>
+    <p>Vérifiez vos informations avant de payer votre commande.</p>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+          <strong>Mon adresse de livraison</strong><br>
+          <div class="form-check mt-4">
+            {{deliverie|raw}}
+          </div>
+
+          <hr>
+
+          <strong>Mon transporteur</strong><br>
+          <div class="form-check">
+            {{carrier.name}}<br>
+            {{carrier.description}}<br>
+            {{carrier.price|number_format(2, ',')}} €
+          </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="text-center">
+                <b>Ma commande</b><br>
+            </div>
+            <div class="order-summary">
+                {% set total = null %}  
+
+                {% for key,produit in cart %}
+                <div class="row {% if key > 0 %}mt-2{% endif %}">
+                    <div class="col-2">
+                        <img src="/uploads/{{produit.produit.illustration}}" alt="{{produit.produit.name}}" height="75px">
+                    </div>
+                    <div class="col-8 my-auto">
+                        {{produit.produit.name}}<br>
+                        <small>
+                          {{produit.produit.subtitle}}
+                          <br>
+                          x {{produit.quantity}}
+                        </small>
+                    </div>
+                    <div class="col-2 my-auto">
+                      {{ ((produit.produit.price * produit.quantity) / 100)|number_format(2, ',')}}
+                    </div>
+                </div>
+                {% set total = total +  (produit.produit.price * produit.quantity)%}
+                {% endfor %}
+            </div>
+
+            <hr>
+            <strong>Total des produit : </strong> {{(total / 100)|number_format(2, ',')}} € <br>
+            <strong>Pris de la Livraison : </strong> {{(carrier.price)|number_format(2, ',')}} €
+            <hr>
+            <strong>Total : </strong> {{((total / 100) + carrier.price)|number_format(2, ',')}} €
+            <br>
+            <a class="btn btn-success btn-block mt-3" id="checkout-button">Passer Au Paiement</a>
+        </div>
+    </div>  
+{% endblock %}
