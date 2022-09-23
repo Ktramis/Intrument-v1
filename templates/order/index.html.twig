@@ -4,7 +4,7 @@
 
 {% block content %}
     <section class="container mt-4">
-        <h2>Je passe ma commadne</h2>
+        <h2>Je passe ma commande</h2>
         <p>Choissiser vos prefference avant de passer votre commande  sur La boutique francais</p>
 
         <div class="row" >
@@ -19,12 +19,30 @@
         
 
         </div>
-        <div class="col-md-6">
-        <b>Récap de ma commande</b>
-        <br>
-        <b>Bouton pour payer</b>
+        <div class="text-center">
+                <b>Récap de ma commande</b><br>
+                <p>Retrouvez le récapitulatif de vos produits</p>
         </div>
-        </div>
+     <div class="order-summary">
+                {% for key,produit in cart %}
+                    <div class="row {% if key > 0 %}mt-2{% endif %}"> 
+                    {# le if indique que si la cle de produit est supereieur a 0 c'est a dirt tout les produit sauf le premier ajout de la class mt-2(margin-top) #}
+                        <div class="col-2">
+                            <img src="/uploads/{{produit.produit.illustration}}" alt="{{produit.produit.name}}" height="75px">
+                        </div>
+                        <div class="col-8 my-auto">
+                            {{produit.produit.name}}<br>
+                            <small>{{produit.produit.subtitle}}</small><br>
+                            {{((produit.produit.price) / 100) | number_format(2,'.' )}}$
+                        </div>
+                        <div class="col-2 my-auto">
+                            x
+                            {{produit.quantity}}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+     <br>
         <a class="btn btn-success btn-block mt-3 " href="{{path('app_cart')}}">Retour au panier</a>
     <section>
 {% endblock %}
