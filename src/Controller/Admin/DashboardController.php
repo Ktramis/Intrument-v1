@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Categorie;
 use App\Controller\Admin\UserCrudController;
 use App\Entity\Carrier;
+use App\Entity\Order;
 use App\Entity\Produit;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -57,6 +58,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Categorie', 'fas fa-list', Categorie::class);
         yield MenuItem::linkToCrud('Produit', 'fas fa-tag', Produit::class);
         yield MenuItem::linkToCrud('Carrier', 'fas fa-truck', Carrier::class);
+        yield MenuItem::linkToCrud('Order', 'fas fa-cart-shopping', Order::class);
         
         // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
     }
