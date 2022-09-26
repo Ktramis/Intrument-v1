@@ -59,7 +59,7 @@
             <hr>
             <strong>Total : </strong> {{((total / 100) + carrier.price)|number_format(2, ',')}} €
             <br>
-            <a class="btn btn-success btn-block mt-3" id="checkout-button">Passer Au Paiement</a>
+            <a class="btn btn-success btn-block mt-3" id="checkout-button" href="{{path('stripe-create',{'reference':reference})}}">Passer Au Paiement</a>
         </div>
     </div>  
 {% endblock %}

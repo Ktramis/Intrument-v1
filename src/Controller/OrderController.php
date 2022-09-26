@@ -96,7 +96,16 @@ class OrderController extends AbstractController
 
             //nouvelle object
             $order= new Order;
-           // on definit m'uttilisateur d'order comme etant l'uttilisateur de la session actuel
+          
+            //a commenter
+            $reference = $date->format('dmY').'-'.uniqid();
+
+            //on donne a la propriete referece de l'entite order tout la varable reference
+            $order->setReference($reference);
+
+
+
+            // on definit m'uttilisateur d'order comme etant l'uttilisateur de la session actuel
             $order->setUser($this->getUser());
             //on lu donne la l'object date crée l'ors de la validation 
             $order->setCreatedAt($date);
@@ -148,12 +157,13 @@ class OrderController extends AbstractController
 
             }
             // on enregitre les donné dans la basse de donne
-            // $this->entityManager->flush();
+            $this->entityManager->flush();
 
             return $this->render('order/add.html.twig',[
                 'cart'=>$cart->getFull(),
                 'deliverie'=>$deliverie_content ,
                 'carrier'=>$carrier,
+                'reference'=>$order->getReference(),
 
             ]);
         }
