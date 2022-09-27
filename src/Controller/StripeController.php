@@ -23,6 +23,7 @@ class StripeController extends AbstractController
         Stripe::setApiKey('sk_test_51LmG10EF5BWtHw7oqGFV5kMA2RJKE4F31vKxIQ9Xj1ftK6Ymx39QA3alQP3Kgt5XFbQjNsLBrzIqG9ludNJRwnhS00xzu32aG0');
              // l'uttilisation :: montre que il sagie une methode statique 
 
+        
         $YOUR_DOMAIN ='http://127.0.0.1:8000';
         
 
@@ -61,7 +62,7 @@ class StripeController extends AbstractController
             ],
             'quantity'=> 1,
         ];
-
+            //le stocage dans stripe ce fais grace a la session sans session pas de stocage de donne
             $checkout_session= Session::create([
                   // donne automatiquement l'email de luttilisateur connecter
                   'customer_email' => $this->getUser()->getEmail(),

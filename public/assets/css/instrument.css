@@ -1,22 +1,34 @@
 .produits{
     display: grid;
     grid-template-columns: auto auto auto;
-    width: 60%;
+    width: 80%;
     margin: auto;
     padding: 10px;
     margin-top:20px;
+    column-gap: 20px;
+    row-gap: 20px;
 }
 .produit{
     width: 33,33%;
+    height: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    
    
     
 }
+.cont{
+    width: 80%;
+    margin: auto;
+}
 .ima_produit{
-   width: 300px;
-   height: 300px;
+   width: 200px;
+   height: 200px;
+
+}
+.ima_produit:hover{
+    border: 5px solid rgb(190, 118, 23, 0.3) ;
 }
 .contoire{
     width: 80%;

@@ -5,7 +5,7 @@
 {% block content %}
 
    
-   <div class="container">
+   <div class="cont">
     <div class="col-md-3">
     <h4>Filtre votre recherche</h4>
     {{form(form)}}
@@ -15,13 +15,14 @@
     <div class="produits col-md-9" >
         {% for produit in produits %}
             <div class="produit ">
-                <h4 >{{produit.name}}</h4>
+                <h5 >{{produit.name}}</h5>
                 <a href= "{{path('produit',{'slug':produit.slug}) }}">
                 <img  src="/uploads/{{produit.illustration}}" alt="" class="ima_produit" >
                 </a>
                 <h5>{{(produit.price / 100)| number_format(2,'.')}}€</h5>
                 <p>{{produit.subtitle}}</p>
             </div>
+            
             
 
         {% endfor %}
