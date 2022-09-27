@@ -36,15 +36,31 @@ class Order
     #[ORM\OneToMany(mappedBy: 'myOrder', targetEntity: OrderDetails::class)]
     private Collection $orderDetails;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $isPaid = null;
+    
 
     #[ORM\Column(length: 255)]
     private ?string $reference = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $stripSessionId = null;
+
+    #[ORM\Column]
+    private ?bool $isPaid = null;
+
     public function __construct()
     {
         $this->orderDetails = new ArrayCollection();
+    }
+    
+    public function getTotal()
+    {
+        $total = null;
+
+        foreach ( $this->getOrderDetails()->getValues() as $product) {
+            $total = $total + ($product->getPrice() * $product->getQuantity());
+        }
+
+        return $total;
     }
 
     public function getId(): ?int
@@ -142,17 +158,7 @@ class Order
         return $this;
     }
 
-    public function isIsPaid(): ?bool
-    {
-        return $this->isPaid;
-    }
-
-    public function setIsPaid(?bool $isPaid): self
-    {
-        $this->isPaid = $isPaid;
-
-        return $this;
-    }
+    
 
     public function getReference(): ?string
     {
@@ -162,6 +168,30 @@ class Order
     public function setReference(string $reference): self
     {
         $this->reference = $reference;
+
+        return $this;
+    }
+
+    public function getStripSessionId(): ?string
+    {
+        return $this->stripSessionId;
+    }
+
+    public function setStripSessionId(?string $stripSessionId): self
+    {
+        $this->stripSessionId = $stripSessionId;
+
+        return $this;
+    }
+
+    public function isIsPaid(): ?bool
+    {
+        return $this->isPaid;
+    }
+
+    public function setIsPaid(bool $isPaid): self
+    {
+        $this->isPaid = $isPaid;
 
         return $this;
     }

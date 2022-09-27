@@ -121,7 +121,7 @@ class OrderController extends AbstractController
             $order->setDeliverie($deliverie_content);
             //le ispaid est un booleen on le deffinit de bass a 0
             $order->setIsPaid(0);
-        
+           
             // on vas mantenent fichier la data(essensiel de le faire maintenemt vue que on a bessois des donné d'order pour order dettail)
             $this->entityManager->persist($order);
 

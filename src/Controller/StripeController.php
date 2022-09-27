@@ -23,7 +23,8 @@ class StripeController extends AbstractController
         Stripe::setApiKey('sk_test_51LmG10EF5BWtHw7oqGFV5kMA2RJKE4F31vKxIQ9Xj1ftK6Ymx39QA3alQP3Kgt5XFbQjNsLBrzIqG9ludNJRwnhS00xzu32aG0');
              // l'uttilisation :: montre que il sagie une methode statique 
 
-        $YOUR_DOMAIN ='http://127.0.0.1:8000/';
+        $YOUR_DOMAIN ='http://127.0.0.1:8000';
+        
 
         // Creation d'un tableau vide dans la varable 
         $produit_for_stripe=[];
@@ -61,7 +62,7 @@ class StripeController extends AbstractController
             'quantity'=> 1,
         ];
 
-            $chekout_session= Session::create([
+            $checkout_session= Session::create([
                   // donne automatiquement l'email de luttilisateur connecter
                   'customer_email' => $this->getUser()->getEmail(),
                   'payment_method_types' => ['card'],
@@ -69,11 +70,14 @@ class StripeController extends AbstractController
                     $produit_for_stripe,
                   ],
                   'mode'=>'payment',
-                  'success_url'=>$YOUR_DOMAIN.'/success.html',
-                  'cancel_url'=>$YOUR_DOMAIN.'/cancel.html', 
+                  'success_url'=>$YOUR_DOMAIN.'/order/success/{CHECKOUT_SESSION_ID}',
+                  'cancel_url'=>$YOUR_DOMAIN.'/order/cancel/{CHECKOUT_SESSION_ID}', 
                 ]);
 
-
-        return $this->redirect($chekout_session->url);
+        $order->setStripSessionId($checkout_session->id);
+        //Exécute le code 
+          $entityManager->flush();
+        
+        return $this->redirect($checkout_session->url);
     }
 }
