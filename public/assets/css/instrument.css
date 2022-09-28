@@ -1,12 +1,8 @@
 .produits{
     display: grid;
-    grid-template-columns: auto auto auto;
-    width: 80%;
-    margin: auto;
-    padding: 10px;
-    margin-top:20px;
-    column-gap: 20px;
-    row-gap: 20px;
+    grid-template-columns: auto auto auto auto;
+    width: 100%;
+    
 }
 .produit{
     width: 33,33%;
@@ -18,17 +14,30 @@
    
     
 }
+.contenaire{
+    width: 30%;
+    height: 100px;
+
+}
 .cont{
     width: 80%;
+    display: flex;
+    justify-content: space-between;
     margin: auto;
+    margin-top: 50px;
+  
 }
 .ima_produit{
-   width: 200px;
-   height: 200px;
+   width: 100% ;
+   height: 50%;
+  
 
 }
 .ima_produit:hover{
     border: 5px solid rgb(190, 118, 23, 0.3) ;
+    
+   
+
 }
 .contoire{
     width: 80%;
@@ -71,5 +80,5 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: aqua;
+   
 }
