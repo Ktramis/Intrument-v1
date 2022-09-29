@@ -82,3 +82,11 @@
     align-items: center;
    
 }
+.carouselExampleControls{
+   width: 40%;
+   margin: auto;
+}
+.ima_carousel{
+    width: 200px;
+    height: 200px;
+}
