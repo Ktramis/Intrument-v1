@@ -1,7 +1,9 @@
 .produits{
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto;
     width: 100%;
+    margin: auto;
+    
     
 }
 .produit{
@@ -15,7 +17,7 @@
     
 }
 .contenaire{
-    width: 30%;
+    width: 33,33%;
     height: 100px;
 
 }
@@ -27,42 +29,35 @@
     margin-top: 50px;
   
 }
+.ima-carousel{
+    overflow: hidden;
+}
+.prod{
+    display: flex;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+}
+
 .ima_produit{
-   width: 100% ;
-   height: 50%;
+   width: 70% ;
+   height: 70%;
+   margin: auto;
+   
   
 
 }
 .ima_produit:hover{
-    border: 5px solid rgb(190, 118, 23, 0.3) ;
+   
+    width: 110%;
+    height: 100%;
+    transition: 1s;
+    
     
    
 
 }
-.contoire{
-    width: 80%;
-    margin: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 
-}
-.left-produit{
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-   align-items: center; 
-}
-.rigth-produit{
-    width: 40%;
-    display: flex;
-    flex-direction: column;
-   align-items: center;  
-}
-.contoire .ima{
- width: 500px;
- height: 500px;
-}
 .cart-icon{
     height: 20px;
     padding-left: 20px;
@@ -89,4 +84,48 @@
 .ima_carousel{
     width: 200px;
     height: 200px;
+}
+.text-muted{
+    height: 40px;
+    width: 265px;
+    margin: auto;
+}
+.btn-info{
+    color: aliceblue;
+    background-color: #da9f5b;
+    border-color: #c86f02;
+}
+.btn-info:hover{
+    color: rgb(255, 225, 142);
+    background-color: #c86d04;
+    border-color: #c86f02;
+    transition: 1s;
+}
+/* show.html.twig */
+
+.contoire{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 100px;
+    
+
+}
+.left-produit{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+   align-items: center; 
+}
+.rigth-produit{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+   align-items: center;  
+}
+.contoire .ima{
+ width: 500px;
+ height: 500px;
 }
